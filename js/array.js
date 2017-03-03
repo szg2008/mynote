@@ -44,8 +44,15 @@ var arr2 = ['h','e','l','l','o'];
 arr1.forEach1(function(item,index,arr){
 	console.log(item);
 	//console.log(arr);
-},obj1);
+});
 
 arr2.forEach2(function(item,value){
+	console.log(item);
+});
+
+
+//Array.Map
+console.log('map');
+arr1.map(function(item){
 	console.log(item);
 });
