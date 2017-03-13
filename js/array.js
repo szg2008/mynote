@@ -93,16 +93,60 @@ Array.prototype.map2 = function(callback){
 	var len = this.length >>> 0;
 	var arr = new Array(len);
 	for(var i = 0; i < len;	i++){
-		//console.log(this);
+		// console.log(callback);
 		arr[i] = callback.call(null,this[i],i);
+		//这里返回一个i值，导致parseInt的第二个参数的进制数成为了0 1 2，所以后两个会输出NaN
 	}
 	return arr;
 }
 
 var roots2 = numbers.map2(function(x){
-	return 9 + x;
+	return (9 + x);
 });
 console.log(roots2);//[10,12,14]
+
+var roots3 = numbers.map2(parseInt);
+console.log(roots3);//[1,NaN,NaN]
+
+var roots4 = numbers.map2(Number);
+console.log(roots4);//[1,3,5]
+
+//Array.filter
+var filArr = [3,5,34,98,123,223];
+var newFilArr = filArr.filter(function(value){
+	return value >= 100;
+});
+console.log(newFilArr);//[123,223]
+
+Array.prototype.filter2 = function(callback,thisArg){
+	var thisArg;
+	var res = new Array();
+	if(this == null){
+		throw new TypeError();
+	}
+	var t = Object(this);
+	var len = t.length >>> 0;
+	if(typeof callback !== 'function'){
+		throw new TypeError();
+	}
+	if(arguments.length >= 2){
+		thisArg = arguments[1];
+	}else{
+		thisArg = void 0;
+	}
+	for(var i = 0;i < len;i++){
+		if(i in t){
+			if(callback.call(thisArg,t[i],i,t)){
+				res.push(t[i]);
+			}
+		}
+	}
+	return res;
+}
+var newFilArr2 = filArr.filter2(function(value){
+	return value < 50;
+});
+console.log(newFilArr2);//[3,5,34]
 
 
 
