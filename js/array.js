@@ -148,6 +148,53 @@ var newFilArr2 = filArr.filter2(function(value){
 });
 console.log(newFilArr2);//[3,5,34]
 
+var everyArr = [23,45,67,2,33,15];
+var everyFlag = everyArr.every(function(item,index){
+	return item >= 20;
+});
+console.log(everyFlag);//false
+
+Array.prototype.every2 = function(callback,thisArgs){
+	if(this == null){
+		throw new TypeError('this is null or undefined');
+	}
+	var T = Object(this);
+	var len = T.length >>> 0;
+	var flag = true;
+	for(var i = 0;i < len;i++){
+		if(!callback.call(thisArgs,this[i],i,T)){
+			flag = false;
+			break;
+		}
+	}
+	return flag;
+}
+var everyFlag2 = everyArr.every2(function(item,index){
+	return item >= 0;
+});
+console.log(everyFlag2);//true
+
+//Array.some:实现方法和every的判断条件不同而已
+Array.prototype.some2 = function(callback,thisArgs){
+	if(this == null){
+		throw new TypeError('this is null or undefined');
+	}
+	var T = Object(this);
+	var len = T.length >>> 0;
+	var flag = false;
+	for(var i = 0;i < len;i++){
+		if(callback.call(thisArgs,this[i],i,T)){
+			flag = true;
+			break;
+		}
+	}
+	return flag;
+}
+
+//Array.isArray
+Array.prototype.isArray2 = function(arg){
+	return Object.prototype.toString.call(arg) === '[object Array]';
+}
 
 
 
