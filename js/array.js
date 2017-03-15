@@ -194,7 +194,75 @@ Array.prototype.some2 = function(callback,thisArgs){
 //Array.isArray
 Array.prototype.isArray2 = function(arg){
 	return Object.prototype.toString.call(arg) === '[object Array]';
-}   
+}
+
+//Array.reduce
+var reduceArr = [1,3,5];
+var sum = reduceArr.reduce(function(a,b){
+	console.log(a,b);
+	return a + b;
+},0);
+console.log(sum);//9
+var reduceArr2 = [[1,4],[3,7],[5,9]];
+var sum2 = reduceArr2.reduce(function(a,b){
+	console.log(a,b);
+	return a.concat(b);
+},[]);
+console.log(sum2);//[1,4,3,7,5,9]
+var reduceArr3 = [{
+  name: 'Anna',
+  books: ['Bible', 'Harry Potter'],
+  age: 21
+}, {
+  name: 'Bob',
+  books: ['War and peace', 'Romeo and Juliet'],
+  age: 26
+}, {
+  name: 'Alice',
+  books: ['The Lord of the Rings', 'The Shining'],
+  age: 18
+}];
+var sum3 = reduceArr3.reduce(function(prev, curr) {
+  return (prev + ',' +curr.books.join(',')).split(',');
+}, ['Alphabet']);
+console.log(sum3);
+
+Array.prototype.reduce2 = function(callback,initialValue){
+	if (this === null) {
+        throw new TypeError( 'Array.prototype.reduce ' + 'called on null or undefined' );
+    }
+    if (typeof callback !== 'function') {
+        throw new TypeError( callback + ' is not a function');
+    }
+    var o = Object(this);
+    var len = o.length >>> 0;     
+    var k = 0; 
+    var value;
+    if (arguments.length == 2) {
+        value = arguments[1];
+    } else {
+	    while (k < len && !(k in o)) {
+	      	k++; 
+	    }
+	    if (k >= len) {
+	      throw new TypeError( 'Reduce of empty array ' +
+	        'with no initial value' );
+	    }
+	    value = o[k++];
+  	}
+  	while (k < len) {
+	    if (k in o){
+	      	value = callback(value, o[k], k, o);
+	    }
+    	k++;
+  	}
+  	return value;
+}
+var sum4 = reduceArr3.reduce2(function(prev, curr) {
+  return (prev + ',' +curr.books.join(',')).split(',');
+}, ['Alphabet']);
+console.log(sum4);
+//Array.reduceRight和reduce正好相反，是从数组的最后开始遍历
 
 
 
