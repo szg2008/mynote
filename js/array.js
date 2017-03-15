@@ -194,7 +194,7 @@ Array.prototype.some2 = function(callback,thisArgs){
 //Array.isArray
 Array.prototype.isArray2 = function(arg){
 	return Object.prototype.toString.call(arg) === '[object Array]';
-}
+}   
 
 
 
