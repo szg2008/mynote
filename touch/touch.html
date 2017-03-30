@@ -1,0 +1,27 @@
+<!DOCTYPE html>
+<html>
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1, maximum-scale=1,minimum-scale=1,user-scalable=no">
+<title>zTouch 手机触屏滑动事件</title>
+<script src="touch.js" type="text/javascript"></script>
+<style type="text/css">
+*{font-family: XinGothic-SinaWeibo, 'Microsoft Yahei', Simsun;}
+#touchBox{display:table;width:100%;height:250px;margin:0px auto;background:#ccc;border:solid 1px #555;cursor: move;overflow:hidden;}
+#innerBox{display:table-cell;vertical-align:middle;text-align:center;overflow:hidden;}
+#innerBox img{width:50%;}
+#showT{height:120px;overflow:hidden;}
+</style>
+</head>
+<body>
+<div id="showT">Demo</div>
+<div id="touchBox">
+	<div id="innerBox"><img src="1.jpg" alt="multi touch" id="img"></div>
+</div>
+<script type="text/javascript">
+	var touch = new Touch({
+		'container':'#img'
+	});
+</script>
+</body>
+</html>
