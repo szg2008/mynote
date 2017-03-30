@@ -1,5 +1,5 @@
 /**
-作用域、闭包
+作用域
 **/
 var scope1 = 'a';
 function fun1(){
@@ -28,3 +28,64 @@ function fun4(){
 	//var scope4;同样都会输出e
 }
 fun4();//e
+
+
+/**
+闭包:
+	一个函数在它所在的词法作用域之外执行了，就产生了闭包
+	常见的闭包的例子就是各种回调函数：计时器、绑定事件、ajax请求
+***/
+
+//eg1
+function wrap1(){
+	var a = 12;
+	function inner1(){
+		console.log(a);
+	}
+	return inner1;
+}
+wrap1()();//inner1在它所在的词法作用域之外执行了，当wrap1执行之后，并不能将其放入垃圾回收站，因为inner1还有对他的引用，这个引用就形成了闭包
+//eg2
+var fn2;
+function wrap2(){
+	var b = 3;
+	function inner2(){
+		console.log(b+' inner2');
+	}
+	fn2 = inner2;
+}
+function tmp(){
+	fn2();
+}
+wrap2();
+tmp();//3 inner2
+
+//eg3
+for(var i = 1;i <= 5;i++){
+	//作用域是共享的，所以i也是共享的
+	setTimeout(function timer(){
+		console.log(i);//6 6 6 6 6
+	},i*1000);
+}
+for(var j = 1;j <= 5;j++){
+	(function(j){
+		//setTimeout(function timer(){
+			console.log(j);//1 2 3 4 5
+		//},j*1000);
+	})(j);
+}
+//另外es6中的let可以创建块级作用域
+
+
+
+
+
+
+
+
+
+
+
+
+
+
