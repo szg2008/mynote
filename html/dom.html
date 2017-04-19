@@ -1,0 +1,84 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+	<meta charset="UTF-8">
+	<title>DOM</title>
+</head>
+<body>
+	<ul id="ulcontainer"></ul>
+	<script>
+		/**
+			在页面ul中插入3个li标签，使用js原生实现,
+			在数量巨大时，怎么实现性能调优
+		**/
+		// window.onload = function(){
+		// 	var t1 = new Date().getTime();
+		// 	var ul = document.getElementById('ulcontainer');
+		// 	if(!ul){
+		// 		return;
+		// 	}
+		// 	for(var i = 0;i < 300000;i++){
+		// 		var li = document.createElement('li');
+		// 		li.innerText = i+1;
+		// 		ul.appendChild(li);
+		// 		//使用闭包创建新的作用域来保存变量i
+		// 		// (function(i){
+		// 		// 	li.addEventListener('click',function(){
+		// 		// 		alert(i);
+		// 		// 	});
+		// 		// })(i+1);
+		// 	}
+		// 	var t2 = new Date().getTime();
+		// 	console.log('通常的做法耗时：' + (t2-t1));
+		// 	//事件委托，用于减少事件注册的数量
+		// 	ul.addEventListener('click',function(e){
+		// 		if(e.target.tagName.toLowerCase() == 'li'){
+		// 			console.log(e.target.innerText);
+		// 		}
+		// 	});
+		// }
+
+		window.onload = function(){
+			//数据量变大之后使用减少DOM操作和缩短循环时间两个方面来优化性能
+			var t1 = new Date().getTime();
+			var ul = document.getElementById('ulcontainer');
+			var total = 300000;//总共插入的节点数
+			var batchSize = 5;//每次插入的节点数
+			var batchCount = total / batchSize;//需要处理的次数
+			var batchDone = 0;//已经完成的次数
+			if(!ul){
+
+				return;
+			}
+			function appendItems(){
+				//创建文档碎片
+				var fragment = document.createDocumentFragment();
+				for(var i = 0;i < batchSize;i++){
+					var li = document.createElement('li');
+					li.innerText = (batchSize*batchDone)+i+1;
+					fragment.appendChild(li);
+				}
+				//每次批处理只修改一次DOM
+				ul.appendChild(fragment);
+				batchDone += 1;
+				if(batchDone < batchCount){
+
+					window.requestAnimationFrame(appendItems);
+				}
+			}
+			if(batchDone < batchCount){
+
+				window.requestAnimationFrame(appendItems);
+			}
+			var t2 = new Date().getTime();
+			console.log('调优之后耗时：' + (t2-t1));//哇哦，速度杠杠滴
+			//事件委托，用于减少事件注册的数量
+			ul.addEventListener('click',function(e){
+				if(e.target.tagName.toLowerCase() == 'li'){
+					console.log(e.target.innerText);
+				}
+			});
+		}
+	</script>
+</body>
+</html>
