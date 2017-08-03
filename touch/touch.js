@@ -58,7 +58,7 @@ Touch.prototype = {
 		}
 		if(this.hasTouch && this.has3d && this.hasTransform){
 			if(this.mutiTouch){
-				get(this.container).style.webkitTransform = 'translate('+this.mX+'px,'+this.mY+'px) scale('+(this.scale)+') rotate('+this.rotation+'deg)';    
+				get(this.container).style.webkitTransform = 'translate('+this.mX+'px,'+this.mY+'px) scale('+(this.scale)+') rotate('+this.rotation+'deg)';
             }else{
                 if(this.scale==0 && this.rotation==0){
                 	get(this.container).style.webkitTransform = 'translate('+(this.mX)+'px,'+(this.mY)+'px)';
