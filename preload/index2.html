@@ -1,0 +1,67 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>图片有序预加载</title>
+    <style>
+        #preload{width:100%;}
+        #wrapper{width:960px;margin:0 auto;margin-top:20px;height:600px;}
+        #wrapper img{width:100%;height: 100%;}
+        #page{margin:0 auto;padding:20px;width:960px;height: 80px;text-align: center;}
+        #page button{width: 100px;height: 40px;margin:0 50px;}
+    </style>
+</head>
+<body>
+    <div id="preload">
+        <div id="wrapper">
+            <img src="" alt="">
+        </div>
+        <div id="page">
+            <button onClick="prev();">上一页</button>
+            <button onClick="next();">下一页</button>
+        </div>
+    </div>
+    <script src="./jquery.js"></script>
+    <script src="./preload.js"></script>
+    <script>
+    var imgs = [
+        'http://sns-img.b0.upaiyun.com/dunzd/1704/1311/55/149902769069531492055742.jpg',
+        'http://sns-img.b0.upaiyun.com/dunzd/1704/1311/33/149687863898791492054403.jpg',
+        'http://sns-img.b0.upaiyun.com/dunzd/1704/1311/32/149986458639581492054379.jpg',
+        'http://sns-img.b0.upaiyun.com/dunzd/1704/1311/32/150078895946161492054332.jpg',
+        'http://sns-img.b0.upaiyun.com/dunzd/1704/1311/52/149612577068541492055536.jpg',
+        'http://sns-img.b0.upaiyun.com/dunzd/1704/1311/55/149763118772341492055759.jpg',
+        'http://sns-img.b0.upaiyun.com/dunzd/1704/1311/56/149537005686321492055769.jpg'
+    ];
+    var index = 0;
+    $(document).ready(function(){
+        $('#wrapper img').attr('src',imgs[0]);
+        //有序加载
+        $.preload(imgs,{
+            order:'ordered',
+            each:function(count){
+                console.log(count)
+            },
+            all:function(){
+
+            }
+        });
+    });
+
+    function prev(){
+        index -- ;
+        index = Math.max(0,index)
+        $('#wrapper img').attr('src',imgs[index])
+    }
+
+    function next(){
+        index ++;
+        index = Math.min(index,imgs.length - 1);
+        $('#wrapper img').attr('src',imgs[index])
+    }
+
+    </script>
+</body>
+</html>

@@ -56,16 +56,12 @@
         });
         function prev(){
             currentIndex -- ;
-            if(currentIndex < 0){
-                currentIndex = 0;
-            }
+            currentIndex = Math.max(0,currentIndex)
             $('#wrapper img').attr('src',imgs[currentIndex])
         }
         function next(){
             currentIndex ++;
-            if(currentIndex > imgs.length - 1){
-                currentIndex = imgs.length - 1;
-            }
+            currentIndex = Math.min(currentIndex,imgs.length - 1);
             $('#wrapper img').attr('src',imgs[currentIndex])
         }
     </script>
