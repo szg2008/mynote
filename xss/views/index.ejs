@@ -1,0 +1,89 @@
+<!DOCTYPE html>
+<html>
+  <head>
+    <title><%= title %></title>
+    <link rel='stylesheet' href='/stylesheets/style.css' />
+    <script src="/javascripts/he.js"></script>
+    <script src="/javascripts/htmlparse.js"></script>
+  </head>
+  <body>
+    <h1><%= title %></h1>
+
+    <textarea name="name" rows="8" cols="80" id='txt'>
+        <p>gaibian<img src="" alt=""></p>
+    </textarea>
+    <button type="button" name="button" id="btn">评论</button>
+    <button type="button" name="button" id="get">获取评论</button>
+    <script>
+        var parse = function(str){
+            var result = '';
+            try{
+                HTMLParser(he.unescape(str,{strict:true}),{
+                    start:function(tag,attrs,unary){
+                        //过滤标签
+                        if(tag=='script'||tag=='style'||tag=='link'||tag=='iframe'||tag=='frame') return;
+                        result += '<' + tag;
+                        //过滤元素的属性
+                        // for(var i = 0,len=attrs.length;i<len;i++){
+                        //     result += " " + attrs[i].name + '="' + attrs[i].escaped + '"';
+                        // }
+                        result += (unary?"/":"") + ">";
+                    },
+                    end:function(tag){
+                        result += "</" + tag + ">";
+                    },
+                    chars:function(text){
+                        result += text;
+                    },
+                    comment:function(text){
+                        result += "<!--" + text + "-->";
+                    }
+                });
+                return result;
+            }catch(e){
+                console.log(e);
+            }finally{
+
+            }
+        }
+        var btn = document.getElementById('btn'),
+            get = document.getElementById('get'),
+            txt = document.getElementById('txt');
+        btn.addEventListener('click',function(){
+            var xhr = new XMLHttpRequest();
+            var url = '/comment?comment=' + txt.value;
+            xhr.open('GET',url,true);
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4){
+                    if(xhr.status == 200){
+                        console.log(xhr);
+                    }else{
+                        console.log('error');
+                    }
+                }
+            }
+            xhr.send();
+        });
+
+        get.addEventListener('click',function(){
+            var xhr = new XMLHttpRequest();
+            var url = '/getComment';
+            xhr.open('GET',url,true);
+            xhr.onreadystatechange = function(){
+                if(xhr.readyState == 4){
+                    if(xhr.status == 200){
+                        console.log(xhr.response)
+                        var com = parse(JSON.parse(xhr.response).comment);
+                        var txt = document.createElement('span');
+                        txt.innerHTML = com;
+                        document.body.appendChild(txt);
+                    }else{
+                        console.log('error');
+                    }
+                }
+            }
+            xhr.send();
+        });
+    </script>
+  </body>
+</html>
