@@ -1,0 +1,26 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title>transition</title>
+    <style>
+        #block{
+            width:400px;
+            height: 400px;
+            margin:0 auto;
+            background: #69e;
+            -webkit-transition:background 3s,height 3s ease-out;
+            /**过渡属性 过渡时间 过渡方法(ease linear ease-in ease-out ease-in-out)**/
+        }
+        #block:hover{
+            background: red;
+            height: 200px;
+        }
+    </style>
+</head>
+<body>
+    <div id="block"></div>
+</body>
+</html>
