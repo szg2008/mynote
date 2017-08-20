@@ -1,0 +1,63 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <style media="screen">
+            p{
+                width:960px;
+                margin:0 auto;
+                background-color: #ccc;
+                text-align: justify;
+                line-height: 0;
+            }
+            .justify-fix{
+                display: inline-block;
+                width:250px;
+                border: 1px dashed red;
+                vertical-align: top;
+            }
+            .dib-baseline{
+                width:150px;
+                height: 150px;
+                display: inline-block;
+                border:1px solid #ccc;
+                background-color: #ccc;
+            }
+            .middle{
+                width:960px;
+                height: 1200px;
+                line-height: 1200px;
+                margin:0 auto;
+                background-color: #ccc;
+                font-size:0;/**设置这个属性，才能实现完全垂直居中**/
+            }
+            .middle img{
+                vertical-align: middle;
+            }
+        </style>
+    </head>
+    <body>
+        <p>
+            <img src="http://sns-img.b0.upaiyun.com/dunzd/1708/0309/16/150523836257671501722972.jpg" alt="" width='250' />
+            <img src="http://sns-img.b0.upaiyun.com/dunzd/1708/0309/16/150523836257671501722972.jpg" alt="" width='250' />
+            <img src="http://sns-img.b0.upaiyun.com/dunzd/1708/0309/16/150523836257671501722972.jpg" alt="" width='250' />
+            <img src="http://sns-img.b0.upaiyun.com/dunzd/1708/0309/16/150523836257671501722972.jpg" alt="" width='250' />
+            <i class="justify-fix"></i>
+            <i class="justify-fix"></i>
+            <i class="justify-fix"></i>
+        </p>
+
+        <div class="dib-baseline">
+
+        </div>
+        <div class="dib-baseline">
+            base-line
+        </div>
+
+        <div class="middle">
+            <img src="http://sns-img.b0.upaiyun.com/dunzd/1708/0309/16/150523836257671501722972.jpg" alt="" width='250' />
+        </div>
+
+    </body>
+</html>
