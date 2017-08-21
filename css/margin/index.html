@@ -1,0 +1,113 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <meta http-equiv="X-UA-Compatible" content="ie=edge">
+    <title></title>
+    <style>
+        .box{
+            width:100%;
+            background-color: #eaeaea;
+        }
+        .box1 img{
+            float:left;
+        }
+        .box1 p{margin-left:200px;}
+
+        .box2{
+            width:400px;
+            height: 200px;
+        }
+        .box2 .text{
+            background-color: green;
+            margin:50%;
+        }
+        .box3{
+            width:400px;
+            height: 200px;
+            /*writing-mode:vertical-lr;*//**更改流的方向*/
+            position: relative;
+        }
+        .box3 .text{
+            position: absolute;
+            left:0;
+            top:0;
+            bottom:0;
+            right:0;
+            height: 100px;
+            width:200px;
+            margin:auto;
+            background-color: #69e;
+        }
+        .box4 .text{
+            float:left;
+            width:70%;
+        }
+        .box4 .text .inner{
+            margin-right:100px;
+        }
+        .box4 img{
+            float: left;
+            margin-left: -100px;
+        }
+        .box5{
+            padding:50%;
+            background-color: green;
+        }
+        .box6{
+            width:100px;
+            height: 100px;
+            padding:10px;
+            border:10px solid;
+            border-radius: 50%;
+            background-color: red;
+            background-clip: content-box;
+        }
+    </style>
+</head>
+<body>
+    <!--一侧定宽的自适应布局-->
+    <div class="box box1">
+        <img src="http://sns-img.b0.upaiyun.com/dunzd/1708/0309/16/150523836257671501722972.jpg" alt="">
+        <p>
+            党的十八大以来，在新中国成立特别是改革开放以来我国发展取得的重大成就基础上，党和国家事业发生历史性变革，我国发展站到了新的历史起点上，中国特色社会主义进入了新的发展阶段。中国今非昔比。在经济总量方面，２０１６年中国经济占世界经济比重达到１４．９％，对世界经济增长贡献率高达３４．７％，而１９７８年比重只有１．８％，贡献率为２．３％。在居民收入方面，２０１６年全国城镇、农村人均收入分别超过３．３万元、１．２万元，而１９７８年只有３００多元、１００多元。美国哈佛大学教授约瑟夫·奈认为，从大的历史背景看，中国创造了非同凡响的转型，这是伟的成功故事。中国成为一个有责任提供全球公共产品的大国，中国看自己和世界看中国的态度都在改变。
+        </p>
+    </div>
+    <br>
+    <!---自适应矩形-->
+    <div class="box box2">
+        <div class="text">
+
+        </div>
+    </div>
+    <br>
+    <!--margin垂直方向居中(绝对定位)-->
+    <div class="box box3">
+        <div class="text"></div>
+    </div>
+    <br>
+
+    <!--两栏自适应效果：margin负值实现-->
+    <div class="box box4">
+        <div class="text">
+            <div class="inner">
+                党的十八大以来，在新中国成立特别是改革开放以来我国发展取得的重大成就基础上，党和国家事业发生历史性变革，我国发展站到了新的历史起点上，中国特色社会主义进入了新的发展阶段。中国今非昔比。在经济总量方面，２０１６年中国经济占世界经济比重达到１４．９％，对世界经济增长贡献率高达３４．７％，而１９７８年比重只有１．８％，贡献率为２．３％。在居民收入方面，２０１６年全国城镇、农村人均收入分别超过３．３万元、１．２万元，而１９７８年只有３００多元、１００多元。美国哈佛大学教授约瑟夫·奈认为，从大的历史背景看，中国创造了非同凡响的转型，这是伟的成功故事。中国成为一个有责任提供全球公共产品的大国，中国看自己和世界看中国的态度都在改变。
+            </div>
+        </div>
+        <img src="http://sns-img.b0.upaiyun.com/dunzd/1708/0309/16/150523836257671501722972.jpg" alt="">
+    </div>
+
+    <br />
+
+    <!--正方形-->
+    <div class="box box5">
+
+    </div>
+
+    <div class="box box6">
+
+
+    </div>
+</body>
+</html>
