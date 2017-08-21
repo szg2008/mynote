@@ -1,0 +1,43 @@
+1.absolute和float相同的表现：
+    包裹性
+    破坏性
+2.absolute越独立越强大
+3.absolute
+    脱离文档流
+    折翼的天使：
+        (1)去除浮动
+        (2)位置跟随
+4.实现一个全屏自适应的遮罩层
+    {
+        position:absolute;
+        width:100%;
+        height:100%;
+        left:0;
+        top:0;
+    }
+    {
+        position:absolute;
+        left:0;
+        top:0;
+        right:0;
+        bottom:0;
+    }
+5.实现一个距离右侧100px的全屏自适应容器层
+    {
+        position:absolute;
+        left:0;
+        top:0;
+        bottom:0;
+        right:100px;
+    }
+    {
+        position:absolute;
+        left:0;
+        top:0;
+        bottom:0;
+        width:calc(100%-100px)
+    }
+6.通常情况下，height要支持百分比，通常需要父级元素height不是auto，
+但是在绝对定位下，即使父级的height是auto，内部元素的height也是支持百分比的
+
+7.absolute代替fixed，实现移动端的布局
