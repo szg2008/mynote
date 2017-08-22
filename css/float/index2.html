@@ -1,0 +1,27 @@
+<!doctype html>
+<html>
+<head>
+<meta charset="utf-8">
+<title>浮动与两侧皆自适应的流体布局</title>
+<style>
+body { font-size: 14px; background-color: #DDF3F7; color: #333; }
+a { color: #0082CB; text-decoration: none; }
+p { margin: 0; } img { border: 0; }
+.mib_body { width: 600px; margin-left: auto; margin-right: auto; }
+.mib_list { padding: 20px; }
+img { float: left; margin-right: 20px; }
+/* 下面这个是固定布局写法 */
+.mib_cell { display: table-cell; *display: inline-block; width: 2000px; *width: auto; }
+</style>
+</head>
+<body>
+<div id="mibBody" class="mib_body">
+    <div class="mib_list">
+        <img id="mibHeadImg" title="徐若瑄VIVIAN" src="http://img.mukewang.com/53e2e9470001dfd200500050.jpg">
+        <div class="mib_cell">
+            徐若瑄VIVIAN：一個人的晚餐！茶泡飯！飯、飯、飯… 今日不減肥，先把病治好再說！ 我認真吃完這，燒就會退了吧？！ 開動啦~~~~~~~~~~~~~~~~~~
+        </div>
+    </div>
+</div>
+</body>
+</html>
