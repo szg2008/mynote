@@ -20,7 +20,7 @@
             defaultCityName: '请选择',
             curRegion: false, //打开日期是否定位当前位置
             mode: null, //操作模式（滑动模式）
-            event: "click", //打开日期插件默认方式为点击后后弹出日期 
+            event: "click", //打开日期插件默认方式为点击后后弹出日期
             show: true
         };
 
@@ -61,7 +61,7 @@
             indexM = 2;
         }
 
-        //还原上次选择的值 
+        //还原上次选择的值
         function resetInit() {
             if(!$(that).data('area')){
                 return;

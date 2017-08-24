@@ -7,9 +7,14 @@ function Parent1(username){
 	}
 }
 
+Parent1.prototype.test = function(){
+	console.log('this is parent1 function');
+}
+
 function Child1(username,addr){
 	this.method = Parent1;
 	this.method(username);
+	//console.log(this.method)
 	delete this.method;
 	this.addr = addr;
 	this.world = function(){
@@ -18,9 +23,10 @@ function Child1(username,addr){
 }
 var parent1 = new Parent1('parname');
 var child1 = new Child1('chiname','bj');
-parent1.hello();
-child1.hello();
-child1.world();
+// parent1.hello();
+// child1.hello();
+// child1.world();
+//child1.test();//不存在
 //2.call apply方式
 function Parent2(username){
 	this.username = username;
@@ -62,7 +68,7 @@ function Child3(username,addr){
 		console.log('this is world function');
 	}
 }
-Child3.prototype = new Parent3('parname');//将Parent3中将所有通过prototype追加的属性和方法都追加到Child3，从而实现了继承 
+Child3.prototype = new Parent3('parname');//将Parent3中将所有通过prototype追加的属性和方法都追加到Child3，从而实现了继承
 var child3 = new Child3('chiname3','bj');
 console.log(child3.username);//parname3
 child3.hello();
@@ -71,4 +77,3 @@ child3.hello();
 //使用call/apply和原型链混用的方式
 
 //5.使用es6中的extends继承
-

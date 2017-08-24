@@ -235,14 +235,14 @@ Array.prototype.reduce2 = function(callback,initialValue){
         throw new TypeError( callback + ' is not a function');
     }
     var o = Object(this);
-    var len = o.length >>> 0;     
-    var k = 0; 
+    var len = o.length >>> 0;
+    var k = 0;
     var value;
     if (arguments.length == 2) {
         value = arguments[1];
     } else {
 	    while (k < len && !(k in o)) {
-	      	k++; 
+	      	k++;
 	    }
 	    if (k >= len) {
 	      throw new TypeError( 'Reduce of empty array ' +
@@ -263,19 +263,3 @@ var sum4 = reduceArr3.reduce2(function(prev, curr) {
 }, ['Alphabet']);
 console.log(sum4);
 //Array.reduceRight和reduce正好相反，是从数组的最后开始遍历
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
