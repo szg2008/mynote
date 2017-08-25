@@ -75,3 +75,15 @@ for(var j = 1;j <= 5;j++){
 	})(j);
 }
 //另外es6中的let可以创建块级作用域
+
+console.log('******************************************');
+/*let不存在变量提升**/
+var aaa = '22';
+function fun11(){
+	console.log(aaa);//undefined
+	aaa = 'dd';
+	let aaa;
+	console.log(aaa);//undefined
+}
+
+fun11();
