@@ -1,0 +1,64 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title></title>
+        <!--
+            头部和底部固定
+            中间区域自适应
+                中间区域左右固定
+                中间自适应
+        -->
+    </head>
+    <style media="screen">
+        *{
+            box-sizing:content-box;/* 伸缩项目自动box-sizing:border-box，所以需调整为content-box */
+            margin:0;
+            padding:0;
+        }
+
+        body{
+            display:flex;
+            flex-direction:column;/* 头、中部、脚纵向显示 */
+        }
+        .header,.footer{
+            flex:0 0 50px;
+            width:100%;
+            border:1px solid #ccc;
+            background-color: blue;
+        }
+        .content{
+            display: flex;
+            flex:1;
+        }
+        .left,.right{
+            height:800px;
+            background:yellow;
+            flex:0 0 100px;/* 左右两列固定宽 */
+        }
+        .main{
+            flex:1;
+            height: 800px;
+        }
+
+    </style>
+    <body>
+        <div class="header">
+
+        </div>
+        <div class="content">
+            <div class="left">
+
+            </div>
+            <div class="main">
+
+            </div>
+            <div class="right">
+
+            </div>
+        </div>
+        <div class="footer">
+
+        </div>
+    </body>
+</html>

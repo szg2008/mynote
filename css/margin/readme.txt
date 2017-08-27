@@ -1,6 +1,6 @@
 1.普通元素的margin百分比都是相对于容器的宽度计算的(自适应矩形)
 2.绝对定位的元素的margin百分比是相对于第一个定位祖先元素(relative,fixed,absolute)的宽度计算的
-3.margin重叠只发生在block元素上,且垂直方向的,重叠的情况：
+3.margin重叠只发生在block元素上,且垂直方向的,重叠的情况：(不包括float和absolute元素)
     相邻元素之间
     父子之间
     空的block元素
