@@ -14,7 +14,11 @@
     jsonp：通过动态script标签
     设置document.domain
     使用iframe
+    window.name
     h5新特性：window.postMessage
+        iframe
+        window.postMessage(data,origin)
+        接收：window.onmessage = function(e){console.log(e.data)}
 
 4.cookie localstorage sessionstorage
     cookie:

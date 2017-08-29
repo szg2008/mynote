@@ -54,3 +54,16 @@
     去除前后空格的正则表达式：/^\s*(.*?)\s*$/
     eg:'   sk    skdhf    '.replace(/^\s*(.*?)\s*$/,'$1')
         //sk    skdhf
+
+10.jquery中 bind live on的区别
+
+11.function fun1(){
+    this.run = function(){
+        console.log(this)
+        setTimeout(function(){
+            console.log(this);
+        },1000)
+    }
+}
+var f = new fun1();
+f.run();
