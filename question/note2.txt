@@ -26,6 +26,7 @@
         }
 
 3.原型链继承，获取实例的prototype
+    child3.__proto__
 
 4.判断一个对象是jquery对象
 
@@ -55,7 +56,15 @@
     eg:'   sk    skdhf    '.replace(/^\s*(.*?)\s*$/,'$1')
         //sk    skdhf
 
-10.jquery中 bind live on的区别
+10.jquery中 bind live on delegate的区别
+    .bind()是直接绑定在元素上，浏览器兼容性也很好，如果不手动设置stopPropagation或者cancelBubble,阻止冒泡的话，
+    会一直冒泡到父级元素，甚至祖先元素document上面。onclick是bind的简化
+    .live()通过冒泡的方式绑定到元素上面，绑定到document DOM上面，好处就是不需要给每一个需要添加事件的元素都加一遍，
+    即使是动态新添加的元素，依然可以绑定上。这个方法只需要在document上绑定一次就可以了
+    .delegate()相比起live，绑定的范围缩小了，可以指定绑定的元素，性能优于live，但是仍然需要迭代找到实际需要执行
+    事件的元素，也可以用在动态添加的元素上面。
+    .on()整合了前面三种点击事件的实现方式。
+
 
 11.function fun1(){
     this.run = function(){
@@ -67,3 +76,4 @@
 }
 var f = new fun1();
 f.run();
+//fun1 window
