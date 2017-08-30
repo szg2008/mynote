@@ -1,6 +1,29 @@
 1.遍历this.props.children
+    React.Children.map(this.props.children,(child)=>{
+        console.log(child)
+    })
 
 2.判断用户的是三击事件
+        var count = 0, timer;
+        document.onclick = function(){
+            if(count < 2){
+                if(timer){
+                    clearTimeout(timer);
+                }
+                count ++;
+                timer = setTimeout(function(){
+                /***意思是如果半秒之内还没有点击，直接从0，也就是第一次开始**/
+                    count = 0;
+                }, 500);
+            }else if(count === 2){
+                count = 0;
+                clearTimeout(timer);
+                threeClick();
+            }
+        }
+        function threeClick(){
+            console.log('three click');
+        }
 
 3.原型链继承，获取实例的prototype
 
@@ -10,9 +33,7 @@
 
 5.作用域链
 
-6.计算时间复杂度
-
-7.react父子组件之间通信的方式：props，其他的方式？兄弟之间通信？
+6.react父子组件之间通信的方式：props，其他的方式？兄弟之间通信？
     父子组件之间：父组件将子组件需要的props传给子组件，子组件之间通过this.props进行获取
     子父组件之间：给子组件设置ref，将传递的内容写在子组件里面，父组件通过ref获取子组件，进而获取里面的内容
     同级组件之间：
@@ -20,13 +41,29 @@
         引入redux
 
 
-8.循环添加点击事件，输出对应的循环下标，除了闭包，其他实现的方式？
+7.循环添加点击事件，输出对应的循环下标，除了闭包，其他实现的方式？
     (1)使用闭包
     (2)循环变量使用let定义
     (3)每次将变量存一下，然后再赋给相应的标签
 
-9.window.name:解决跨域问题：
+8.window.name:解决跨域问题：
     使用iframe的iframe.contentWindow.name，
     通过获取这个name就可以把不同域下面的页面中的数据传递到本域名下面，成功的进行了跨域访问
 
-10.常用正则表达式
+9.常用正则表达式
+    去除前后空格的正则表达式：/^\s*(.*?)\s*$/
+    eg:'   sk    skdhf    '.replace(/^\s*(.*?)\s*$/,'$1')
+        //sk    skdhf
+
+10.jquery中 bind live on的区别
+
+11.function fun1(){
+    this.run = function(){
+        console.log(this)
+        setTimeout(function(){
+            console.log(this);
+        },1000)
+    }
+}
+var f = new fun1();
+f.run();
