@@ -1,16 +1,11 @@
-/***js循环绑定事件****/
-function xunhuan1(){
-    for(let i = 0;i < 10;i++){
-        console.log(i);
+/**字符串扩展，
+'Hello'.repeatStr(3)->HelloHelloHello
+**/
+String.prototype.repeatStr = function(n){
+    let str = '';
+    for(let i = 0;i < n;i++){
+        str += this;
     }
+    console.log(str)
 }
-
-xunhuan1();
-
-function xunhuan2(){
-    for(var i = 0;i < 10;i++){
-        console.log(i);
-    }
-}
-
-xunhuan2();
+'Hello'.repeatStr(3);//HelloHelloHello
