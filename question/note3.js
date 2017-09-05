@@ -45,7 +45,7 @@ obj.waitAndShout();
 3.验证电子邮箱地址的格式
 */
 function regEmail(email){
-    let reg = /^\w+([\.-_]?\w+)*@\w+([\.-_]?\w+)*(\.\w{2,3})+$/;
+    let reg = /^\w+([\.-_]?\w+)@\w+([\.-_]?\w+)(\.\w{2,3})+$/;
     if(reg.test(email)){
         return true
     }else{
@@ -53,4 +53,12 @@ function regEmail(email){
     }
 }
 
-console.log(regEmail('1039168735@qq.com.cn'));
+console.log(regEmail('8_923__4987@qq.com.cn'));
+
+/******
+    trim()
+****/
+String.prototype.trim = function(){
+    return this.replace(/^\s*|\s*$/g,'')
+}
+console.log('    jjs   '.trim());
