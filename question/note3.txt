@@ -19,3 +19,5 @@ https://hyc.gitbooks.io/interviewlibrary/content/
 3.post请求缓存数据
 
 4.md5算法的实现
+
+5.ios下去除input默认样式的方法：-webkit-appearance: none;

@@ -62,3 +62,14 @@ String.prototype.trim = function(){
     return this.replace(/^\s*|\s*$/g,'')
 }
 console.log('    jjs   '.trim());
+
+/**
+    实现一共返回1-5五个值，并且1秒钟输出一个
+***/
+for(var i=1;i<=5;i++) {
+    (function(i){
+        setTimeout(()=>{
+            console.log(i)
+        },i*1000)
+    })(i);
+}
