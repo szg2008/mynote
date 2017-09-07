@@ -73,3 +73,67 @@ for(var i=1;i<=5;i++) {
         },i*1000)
     })(i);
 }
+
+/***
+
+**/
+'use strict'
+f = function(){return true;}
+g = function(){return false;}
+;(function(){
+    function g(){return true}
+    if(g() && [] == ![]){
+        f = function(){return false}
+
+    }
+})();
+
+console.log(f())
+
+
+/***
+
+***/
+function Parent(name,age){
+    this.test = function(){
+        console.log('test')
+    }
+}
+function Child(){}
+
+Child.prototype = Parent.prototype;//共享原型
+
+Child.prototype.getName = function(){
+    console.log('name')
+}
+
+Parent.prototype.getAge = function(){
+    console.log('age')
+}
+
+var subParent = Object.create(Parent);
+
+console.log(subParent)
+
+//var subparent = new subParent();
+
+subParent.test();
+
+var parent = new Parent('123','456')
+
+parent.getName()
+
+//Child.prototype = new Parent('123','456');
+
+
+/***
+bind
+***/
+
+
+/**
+多列布局
+box-sizing
+**/
+
+/***变量提升的原因**/
