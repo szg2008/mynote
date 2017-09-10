@@ -83,7 +83,7 @@ g = function(){return false;}
 ;(function(){
     function g(){return true}
     if(g() && [] == ![]){
-        f = function(){return false}
+        f = function f(){return false}
 
     }
 })();
@@ -92,7 +92,26 @@ console.log(f())
 
 /***
 bind
+类似与call apply方法
+    改变函数体执行时候的上下文this
+    科里化
+
 ***/
+
+function add(a,b,c){
+    return a + b + c
+}
+
+var func = add.bind(null,100)
+
+console.log(func(1,2))//100+1+2
+
+var func2 = func.bind(undefined,200)
+
+console.log(func2(3))//100+200+3
+
+
+
 
 
 /**
@@ -100,4 +119,10 @@ bind
 box-sizing
 **/
 
-/***变量提升的原因**/
+/***变量提升的原因
+
+函数初始化阶段：
+    1.函数参数进行初始化
+    2.函数声明(如果命名发生冲突，会发生覆盖)
+    3.变量声明(初始化变量为undefined，如果发生命名冲突，会忽略)
+**/

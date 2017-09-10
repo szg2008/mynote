@@ -11,6 +11,90 @@
             .main { border: 1px solid #000; }
             .nav, .sub { border: 1px dashed #000; height: 300px; }
             .sub { height: 280px; }
+            .centercontainer{
+                width:1120px;
+                margin:20px auto;
+                border:2px dashed #69c;
+                height: 2000px;
+            }
+            .center1,.center2{
+                width:960px;
+                height:200px;
+                margin:10px auto;
+                border:2px solid #f9a;
+                position:relative;
+            }
+            .center3,.center4,.center5{
+                width:960px;
+                height:200px;
+                margin:10px auto;
+                border:2px solid #f9a;
+            }
+            .center4{
+                width:1120px;
+                display: table-cell;
+                vertical-align: middle;
+                text-align: center;
+            }
+            .center1 .centeritem1{
+                width:100px;
+                height:100px;
+                position: absolute;
+                left:50%;
+                top:50%;
+                border:2px dashed #4e5;
+                margin-left:-50px;
+                margin-top:-50px;
+            }
+            .center2 .centeritem2{
+                width:50px;
+                height: 50px;
+                position: absolute;
+                left:0;
+                top:0;
+                right:0;
+                bottom:0;
+                border:2px dashed #4e5;
+                margin:auto;
+            }
+            .center3 .wrapper3{
+                float:left;
+                position:relative;
+                left:50%;
+            }
+            .center3 .centeritem3{
+                position:relative;
+                left:-50%;
+            }
+            .center4 .centeritem4{
+                display: inline-block;
+                width:50px;
+                height: 50px;
+                border:1px solid #e43;
+            }
+            .center5{
+                position: relative;
+            }
+            .center6{
+                display: flex;
+                align-items: center;
+                justify-content: center;
+                width:960px;
+                height: 200px;
+                margin:10px auto;
+                border:1px solid #e43;
+            }
+            .center5 .centeritem5{
+                position: absolute;
+                transform:translate(-50%,-50%);
+                -webkit-transform:translate(-50%,-50%);
+                top:50%;
+                left:50%;
+                border:1px solid #2f3;
+            }
+            .center5 .centeritem5{
+
+            }
         </style>
     </head>
     <body>
@@ -44,5 +128,58 @@
             <dd>项目2</dd>
             <dd>项目3</dd>
         </dl>
+
+        <!--居中练习--->
+        <div class="centercontainer">
+            <div class="center1">
+                <!--已知宽度和高度-->
+                <div class="centeritem1">
+
+                </div>
+            </div>
+            <div class="center2">
+                <!--已知宽度和高度-->
+                <div class="centeritem2">
+
+                </div>
+            </div>
+            <div class="center3">
+                <!--不用知道元素的宽度，使用浮动和相对定位实现-->
+                <div class="wrapper3">
+                    <div class="centeritem3">
+                        你好，我是水平居中滴～～～
+                    </div>
+                </div>
+            </div>
+            <div class="center4">
+                <!--不需知道元素的宽度和高度--->
+                <div class="centeritem4">
+
+                </div>
+            </div>
+            <div class="center5">
+                <!--不需知道元素的宽度和高度--->
+                <div class="centeritem5">
+                    我是垂直水平居中滴～～～～～～
+                    <br>
+                    我是垂直水平居中滴～～～～～～
+                    <br>
+                    我是垂直水平居中滴～～～～～～
+                </div>
+            </div>
+            <div class="center6">
+                <!--不需知道元素的宽度和高度--->
+                <div class="centeritem6">
+                    我是flex垂直水平居中滴～～～～～～
+                    <br>
+                    我是flex垂直水平居中滴～～～～～～
+                    <br>
+                    我是flex垂直水平居中滴～～～～～～
+                    <br>
+                    我是flex垂直水平居中滴～～～～～～
+
+                </div>
+            </div>
+        </div>
     </body>
 </html>
