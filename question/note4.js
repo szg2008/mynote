@@ -128,6 +128,8 @@ inheritObj(Child3,Parent)
 
 var child5 = new Child3('child5')
 
+console.log('child5')
+
 console.log(child5.sayHello(),child5.name,child5.getName())
 
 
@@ -170,3 +172,14 @@ function log(){
 }
 
 log(1,2,3)
+
+function foo(){
+    this.b = 2
+    return this.a
+}
+
+let func = foo.bind({a:1})
+
+console.log(func())//1
+
+console.log(new func())//foo{b:2}

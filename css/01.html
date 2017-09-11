@@ -2,30 +2,67 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<title>三列布局</title>
+	<title>三列布局(中间自适应，两边宽度固定)</title>
+	<!--
+		1.使用绝对定位布局，左右两侧使用绝对定位，利用绝对定位的脱离文档流的特性
+		2.使用自身浮动方法
+		3.圣杯布局方法
+ 	-->
 	<style>
 		*{margin:0;padding:0;}
 		.left{
-			width:200px;
-			height:500px;
+			width:100px;
+			height:100px;
 			background-color: #ccc;
 			position: absolute;
 			left:0;
 			top:0;
 		}
 		.main{
-			height:500px;
-			margin:0 310px 0 210px;
+			height:100px;
+			margin:0 110px 0 110px;
 			background-color: red;
 		}
 		.right{
-			width:300px;
-			height: 500px;
+			width:100px;
+			height: 100px;
 			background-color: #ed4;
 			position: absolute;
 			right: 0;
 			top:0;
 		}
+
+		.left2,.right2{
+			width:100px;
+			height:100px;
+			background-color: #ed4;
+		}
+		.left2{float: left;}
+		.right2{float:right;}
+		.main2{
+			height: 100px;
+			background-color: red;
+			margin:0 110px 0 110px;
+		}
+		.wrapper3{
+			width: 100%;
+			height: 100px;
+			background-color: #fff;
+			float: left;
+		}
+		.wrapper3 .main3{
+			margin:0 110px;
+			height: 100px;
+			background-color: #ffe6b8;
+		}
+		.left3,.right3{
+			float: left;
+			width: 100px;
+			height: 100px;
+			background-color: darkorange
+		}
+		.left3{margin-left: -100%; background-color: lightpink}
+		.right3{margin-left: -100px;}
 	</style>
 </head>
 <body>
@@ -34,5 +71,22 @@
 		于是思路再次陷入僵局，任务不能实现，但是将淘宝代码搞下来，也无法实现，最后就开始以各种漫无目的，垃圾的办法搞，终于不注意成功了一次！！！无意义的成功是因为将定时器设置的很大......
 	</div>
 	<div class="right"></div>
+	<br>
+	<br>
+	<div class="left2"></div>
+	<div class="right2"></div>
+	<div class="main2">
+		于是思路再次陷入僵局，任务不能实现，但是将淘宝代码搞下来，也无法实现，最后就开始以各种漫无目的，垃圾的办法搞，终于不注意成功了一次！！！无意义的成功是因为将定时器设置的很大......
+	</div>
+	<br>
+	<br>
+	<div class="wrapper3">
+		<div class="main3">
+			于是思路再次陷入僵局，任务不能实现，但是将淘宝代码搞下来，也无法实现，最后就开始以各种漫无目的，垃圾的办法搞，终于不注意成功了一次！！！无意义的成功是因为将定时器设置的很大......
+		</div>
+	</div>
+	<div class="left3"></div>
+	<div class="right3"></div>
+
 </body>
 </html>
