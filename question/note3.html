@@ -92,8 +92,19 @@
                 left:50%;
                 border:1px solid #2f3;
             }
-            .center5 .centeritem5{
-
+            .Center-Container{
+                display: table;
+                width:960px;
+                height:200px;
+                margin:10px auto;
+                border:2px solid #f9a;
+            }
+            .is-Table .Table-Cell {
+                display: table-cell;
+                vertical-align: middle;
+            }
+            .is-Table .Center-Block {
+                text-align: center;
             }
         </style>
     </head>
@@ -178,6 +189,19 @@
                     <br>
                     我是flex垂直水平居中滴～～～～～～
 
+                </div>
+            </div>
+
+            <div class="Center-Container is-Table">
+                <div class="Table-Cell">
+                    <div class="Center-Block">
+                            table-cell水平垂直居中～～～
+                            <br>
+                            table-cell水平垂直居中～～～
+                            <br>
+                            table-cell水平垂直居中～～～
+                            <br>
+                    </div>
                 </div>
             </div>
         </div>
