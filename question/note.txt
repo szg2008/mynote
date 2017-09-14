@@ -38,7 +38,8 @@
 
 5.css animation配合keyframes使用
 
-6.如果是行内元素呢？如果字体font-size是10px，行高line-height是2px，显示多高？显示的时字体的大小高度，因为浏览器识别的最小字体时12，所以高度最小也是12
+6.如果是行内元素呢？如果字体font-size是10px，行高line-height是2px，显示多高？显示的时字体的大小高度，因为浏览器识别的最小字体时12，
+所以高度最小也是12
 如果是block元素，如果设置了line-height,高度就是行高，否则就是字体大小的高度
 
 7.em和rem：
