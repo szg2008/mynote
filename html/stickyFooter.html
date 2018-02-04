@@ -1,0 +1,71 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Sticky Footer</title>
+    <style>
+        /**
+            *{
+                margin:0;
+                padding:0;
+            }
+            html,body{
+                width:100vw;
+                text-align:center;
+            }
+            header,footer{
+                width:100%;
+                height:50px;
+            }
+            footer{
+                line-height: 50px;
+            }
+            main{
+                min-height: calc(100vh - 100px);
+            }
+        **/
+        body{
+            display:flex;
+            flex-flow:column;
+            min-height: 100vh;
+        }
+        main{
+            flex:1;
+        }
+        header,footer{
+            flex:0;
+        }
+    </style>
+</head>
+<body>
+    <header>
+        <h1>This is Header</h1>
+    </header>
+    <main>
+        <!-- <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p> -->
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+        <p>Bacon Ipsum dolor sit amet Bacon Ipsum dolor sit amet</p>
+    </main>
+    <footer>
+        <p>固定底部,随着内容增加向下顶</p>
+    </footer>
+</body>
+</html>
