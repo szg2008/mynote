@@ -23,3 +23,169 @@ https://hyc.gitbooks.io/interviewlibrary/content/
 5.ios下去除input默认样式的方法：-webkit-appearance: none;
 
 6.bind原理
+
+7.function和箭头函数的区别：
+    this的指向：箭头函数this指的是该函数在定义时候的对象，而function中的this指的是执行时候的对象
+    箭头函数不能用作构造函数，不能使用arguments对象
+
+8.var和let const的区别
+    let const具有块级作用域名，var是函数作用域
+    let const声明的变量不能重复声明，var可以
+    let const必须先声明才能使用，var不用声明直接可以使用
+    let const不存在变量提升，var存在变量提升
+
+9.String新增的方法
+    String.fromCodePoint
+    String.prototype.codePointAt
+    用来处理大于十进制数最大65535值的字符编码。比如：emojj表情等
+
+10.基本数据类型和引用数据类型：
+    在进行参数传递的时候都当做是值的传递，而不是引用的传递
+eg：
+    function setName(obj){
+        obj.name = 'qq'
+        obj = {}
+        obj.name = "ww"
+    }
+    var person = {}
+    setName(person) //{name:"qq"}
+    这里，person和obj，刚开始指向的是同一个地址，但是obj = {},执行这句之后，相当于在堆内存中又重新开辟了一个空间，并且obj指向了
+    新开辟的空间，所以在执行obj.name = "ww"时，修改的只是obj.name，并没有影响person
+11.instanceof只能和引用类型结合使用，如果是基本类型，都是会返回false
+
+12.什么是作用域链
+eg：
+    var name = 'qq'
+    function fn1(){
+        var name = 'ww'
+        var sex = 'male'
+        function fn2(){
+            var name = 'rr'
+            var age = 23
+        }
+    }
+    作用域逐层嵌套，就形成了作用域链，在进行变量查找的时候，是从里向外逐层进行查找，直到window最外层为止。
+
+13.js预解析
+    预定义：将var function提前
+    逐行执行代码
+    var name = 1
+    function fn1(){
+        console.log(name)//undefined
+        var name = 2
+        console.log(name)//2
+    }
+
+    在旧版本的firefox中，if里面的函数定义是不能预解析的
+
+    //
+    console.log(a)  （1）
+    var a = 1
+    console.log(a)  （2）
+    function a(){
+        console.log(2)
+    }
+    console.log(a)  （3）
+    var a = 3
+    console.log(a)  （4）
+    function a(){
+        console.log(4)
+    }
+    console.log(a)  （5）
+    a() （6）
+    分析以上代码：
+        1.预解析：先找到var，a = undefined
+        2.找到function ，这里有两个相同的function，并且function的名字和变量a的名称一样，那么将覆盖a = undefined,a是一个function，并且
+        后一个function覆盖前面一个function
+        3.预解析完毕，开始逐行执行代码：（1）预解析中a是一个funcion，所以这里a的值是function a(){console.log(4)}
+        （2）上面已经重新赋值a＝1，所以这里a ＝ 1
+        （3）和（2）一样a ＝ 1
+        （4）a重新赋值，a＝3
+        （5）同4，a＝3
+        （6）由于这时a是一个数值，不是方法，所以会报错
+
+常见的例子：
+    （1）
+        var a = 1;
+        function fn(){
+            console.log(a)
+            var a = 2
+        }
+
+        fn() //undefined
+        console.log(a) //1
+
+    (2)
+        var a = 1;
+        function fn(){
+            console.log(a)
+            a = 2
+        }
+
+        fn() //1
+        console.log(a) //2
+
+    (3)
+        var a = 1;
+        function fn(a){
+            console.log(a)
+            a = 2
+        }
+
+        fn() //undefined
+        console.log(a)//1
+
+    (4)
+        var a = 1
+        function fn(a){
+            console.log(a)
+            a = 2
+        }
+
+        fn(a) //1
+        console.log(a)//1
+
+14.垃圾回收的原理：找出没用数据，打上标记，释放其内存，周期性执行
+    标记无用数据的策略：
+        标记清除
+        引用计数
+    手动清除引用的办法是将变量设置成null
+
+15.定义和调用函数时发生的事情：默认是在window环境中
+    在window作用域中定义了一个名为fn的函数，属于全局作用域，fn里面的代码不会执行
+    在调用fn函数的时候，fn创建了一个局部作用域，fn开始执行，初始化参数和fn中的局部变量，并进行赋值操作，
+    执行相应的代码。
+
+16.定义函数的方式：
+    function add(num1,num2){
+        return num1 + num2
+    }
+
+    var add = function(num1,num2){
+        return num1 + num2
+    }
+
+    var add = new Function("num1","num2","return num1 + num2")
+
+17.匿名函数的调用(自执行)
+    var add = function(){console.log(111)}()
+    (function(){console.log(111)})()
+    (function(){console.log(111)}())
+    +function(){console.log(111)}()
+    ~
+    -
+    !
+    console.log(function(){return 1;}())
+
+18.函数实参和行参的个数
+    function add(num1,num2){
+        console.log(arguments.length)//实参的个数
+        console.log(add.length)//行参的个数
+        return num1 + num2
+    }
+
+    add(1,2,3)
+    如果num1重新赋值为2，那么在函数中arguments[0] = 2,也会相应改变，
+    相反，如果arguments[0] = 12,那么num1也会跟着改变
+
+19.
