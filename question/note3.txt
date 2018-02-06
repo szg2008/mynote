@@ -194,4 +194,59 @@ eg：
     优点：有利于封装，可以访问局部变量
     缺点：内存占用浪费严重，容易产生内存泄漏
 
-21.
+21.创建对象
+    function person(){}
+    var p = new person()
+    //分为三步执行：
+        (1) var p = {}
+        (2) p.__proto__ = person.prototype      __proto__是一个对象的内置属性
+        (3) 创建对象 p -> p.call(person)
+
+    原型继承的原理
+    原型链的实现过程：
+        function person(){}
+        person.prototype.say = function(){console.log('Hello')}
+        person.prototype.name = 'xh'
+        function zhangziyi(){}
+        zhangziyi.prototype = new person()
+        zhangziyi.prototype.name = 'xm'
+
+        var zzy = new zhangziyi()
+
+        zzy.say()-->Hello
+        console.log(zzy.name)
+    分析过程：
+        zzy = new zhangziyi() -> zzy.__proto__ = zhangziyi.prototype = new person()
+           var p = new person() p = zhangziyi.prototype
+           p.__proto__ = person.prototype
+        zzy.say() -> zzy.__proto__ = zhangziyi.prototype = p
+        p本身没有say方法，所以从p.__proto__中查找.向上查找
+        p.__proto__ = person.prototype,而person.prototype本身是有say方法的
+
+22.设计模式：
+    单例模式：(对象只能有一个实例)
+        var SingleClass = (function(){
+            var instance = null
+            function SingleClass(){
+                if(instance){
+                    return instance
+                }
+
+                this.name = 'SingleClass';
+                this.id = Math.random()
+                instance = this
+                return instance
+            }
+            SingleClass.prototype.say = function(){
+                console.log(this.name + '    ' + this.id + '    ' + '......')
+            }
+
+            return SingleClass
+        })();
+
+        var sc1 = new SingleClass()
+        sc1.say()
+        var sc2 = new SingleClass()
+        sc2.say()
+    对应实际项目中的运用：弹框的显示，每次点击显示弹框(默认是点击的时候动态创建的),每次创建的时候首先判断一下是否已经有了弹框，如果有了就直接显示，如果没有再进行创建。(类似的效果在很多地方都会被用到)
+        
