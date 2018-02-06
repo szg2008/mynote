@@ -248,5 +248,56 @@ eg：
         sc1.say()
         var sc2 = new SingleClass()
         sc2.say()
-    对应实际项目中的运用：弹框的显示，每次点击显示弹框(默认是点击的时候动态创建的),每次创建的时候首先判断一下是否已经有了弹框，如果有了就直接显示，如果没有再进行创建。(类似的效果在很多地方都会被用到)
-        
+    对应实际项目中的运用：
+        弹框的显示，每次点击显示弹框(默认是点击的时候动态创建的),每次创建的时候首先判断一下是否已经有了弹框，
+        如果有了就直接显示，如果没有再进行创建。(类似的效果在很多地方都会被用到)
+
+23.html-shim原理：
+    通过document.createElement(h5新增元素)，来兼容IE。
+    document.createElement()  创建一个元素
+    document.createTextNode()  创建文本节点
+    document.createFragment()  创建文档片段
+    document.createComment()   创建注释
+
+24.打印一个页面的HTML结构树
+    var str = ""
+    function trival(space,node){
+        if(node.tagName){
+            str += space + node.tagName + '<br/>'
+        }
+
+        for(var i = 0;i < node.childNodes.length;i++){
+            if(node.childNodes[i].nodeType == 1){//元素节点，不是文本节点
+                trival(space + '|-',node.childNodes[i])
+            }
+
+        }
+    }
+    trival("",document)
+    document.write(str)
+
+    var str = ""
+    function trival(space,node){
+        if(node.tagName){
+            str += space + node.tagName + '<br/>'
+        }
+
+        for(var i = 0;i < node.children.length;i++){
+            trival(space + '|-',node.children[i])//children返回的不包含文本节点
+        }
+    }
+    trival("",document)
+    document.write(str)
+
+25.常见的类数组对象：NodeList HTMLCollection NamedNodeMap,他们都具有动态性
+<div></div><div></div>
+function fn(){
+    var i = 0
+    var divs = document.getElementsByTagName('div')
+    while(i < divs.length){
+        document.appendChild(document.createElement('div'))
+        i++
+    }
+}
+,这样会陷入死循环，因为每创建一个div，divs.length会自动更新，所以循环会一直执行，解决办法是将length进行缓存
+var len = divs.length,说明了这几个类数组对象的动态性
