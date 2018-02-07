@@ -301,3 +301,32 @@ function fn(){
 }
 ,这样会陷入死循环，因为每创建一个div，divs.length会自动更新，所以循环会一直执行，解决办法是将length进行缓存
 var len = divs.length,说明了这几个类数组对象的动态性
+
+26.常用的获取Dom元素的方法：
+    getElementById(document)
+        IE下面，如果name和id是相同的值，那么会返回第一个值为target的元素，包括name值和id值
+    兼容IE的方法
+    var getElementById = function(id){
+        var el = document.getElementsById(id)
+        if(!+"\v1"){//如果是在IE中
+            if(el && el.id === id){
+                return el
+            }else{
+                var els = document.all[id],
+                    n = els.length
+                for(var i = 0;i < n;i++){
+                    if(els[i].id === id){
+                        return els[i]
+                    }
+                }
+            }
+        }
+        return el
+    }
+    getElementsByTagName
+    getElementsByName
+    getElementsByClassName
+    querySelector
+    querySelectorAll
+
+
