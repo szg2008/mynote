@@ -323,10 +323,37 @@ var len = divs.length,说明了这几个类数组对象的动态性
         }
         return el
     }
+    getElementsByName(document)
     getElementsByTagName
-    getElementsByName
-    getElementsByClassName
+    getElementsByClassName(可以传入多个class名，顺序不区分)
     querySelector
-    querySelectorAll
+    querySelectorAll（不具有动态性）
+
+    firstElementChild,lastElementChild......
+    appendChild
+    insertBefore
+    replaceChild
+    cloneNode(true)
+    normalize
+    splitText和normalize相反
 
 
+    removeChild
+    removeNode(IE)
+    innerHTML
+
+27.Dom属性
+    固有属性  input.id,直接通过.访问
+    自定义属性 attributes
+            div.attributes.getNamedItem('aa').nodeValue
+            div.attributes.getNamedItem('aa')
+            创建自定义属性
+                var attr = document.createAttribute('data-title')
+                attr.value = 'title'
+                div.attributes.setNamedItem(attr)
+
+    getAttribute
+    setAttribute
+    removeAttribute
+
+    classList
