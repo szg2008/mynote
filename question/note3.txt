@@ -357,3 +357,68 @@ var len = divs.length,说明了这几个类数组对象的动态性
     removeAttribute
 
     classList
+
+28.事件
+    事件绑定的方式：
+        （1）直接在元素上面添加事件属性<button onclick="fn()"></button>
+        （2）DOM0级事件（兼容所有浏览器）
+            document.getElementById(id).onclick = function(){}
+            且只能绑定一个事件类型。如果同时绑定两个方法的时候，会覆盖上一个
+        （3）DOM2级事件（兼容）
+            document.getElementById(id).addEventListener('click',fn,false)
+            同一个元素多个相同事件并存的
+            新增捕获和冒泡
+            addEventListener中第三个参数值表示的是捕获还是冒泡，
+            默认false表示的是冒泡的,表明是首先执行child事件，然后再执行parent事件
+            如果是true，那么表示的是捕获，首先执行parent，然后再执行child
+
+        区分在何种情况下使用哪种方式
+
+        移除事件
+            removeEventListener事件解绑成功的主要原因是，add和remove两个事件里面的参数是一致的
+            也就是不能采用匿名函数
+            btn.addEventListener('click',fn)
+            btn.removeEventListener('click',fn)
+
+
+    IE8事件处理程序
+        attachEvent
+        detachEvent
+        btn.attachEvent('onclick',function(){
+            console.log(this === window) //true
+        })
+
+        跨浏览器事件处理程序
+
+        var EventUtil = {
+            addHandler:function(element,type,handler){
+                if(element.addEventListener){
+                    element.addEventListener(type,handler)
+                }else if(element.attachEvent){
+                    element.attachEvent('on' + type,handler)
+                }else{
+                    element['on' + type] = null
+                }
+            },
+            removeHandler:function(element,type,handler){
+                if(element.removeEventListener){
+                    element.removeEventListener(type,handler)
+                }else if(element.detachEvent){
+                    element.detachEvent('on' + type,handler)
+                }else{
+                    element['on' + type] = null
+                }
+            }
+
+        }
+
+
+        事件委托（原理就是事件冒泡）
+
+29.Event对象
+    target事件源
+    currentTarget当前绑定事件的对象
+    clientY pageY screenY
+    clientY:浏览器顶部底边到鼠标位置
+    pageY:浏览器顶部底边到鼠标位置（包括滚动轴的距离）
+    screenY:屏幕最顶部到鼠标位置
