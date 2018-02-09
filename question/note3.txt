@@ -380,6 +380,8 @@ var len = divs.length,说明了这几个类数组对象的动态性
             btn.addEventListener('click',fn)
             btn.removeEventListener('click',fn)
 
+            event.preventDefault()//阻止默认行为
+            event.stopPropagation();//阻止事件冒泡
 
     IE8事件处理程序
         attachEvent
@@ -387,6 +389,8 @@ var len = divs.length,说明了这几个类数组对象的动态性
         btn.attachEvent('onclick',function(){
             console.log(this === window) //true
         })
+        e.returnValue = false//IE下面的阻止默认行为
+        e.cancelBubble = true//IE下面阻止事件冒泡
 
         跨浏览器事件处理程序
 
@@ -408,17 +412,47 @@ var len = divs.length,说明了这几个类数组对象的动态性
                 }else{
                     element['on' + type] = null
                 }
+            },
+            getTarget:function(e){
+                return e.target || e.srcElement
+            },
+            preventDefault:function(e){
+                if(e.preventDefault){
+                    e.preventDefault()
+                }else{
+                    e.returnValue = false
+                }
+            },
+            stopPropagation:function(e){
+                if(e.stopPropagation){
+                    e.stopPropagation()
+                }else{
+                    e.cancelBubble = true
+                }
             }
-
         }
 
 
         事件委托（原理就是事件冒泡）
 
-29.Event对象
-    target事件源
+29.Event对象(事件类型需要重新看一次)
+    target事件源--->IE下面是srcElement
     currentTarget当前绑定事件的对象
     clientY pageY screenY
     clientY:浏览器顶部底边到鼠标位置
     pageY:浏览器顶部底边到鼠标位置（包括滚动轴的距离）
     screenY:屏幕最顶部到鼠标位置
+
+30. DomContentLoaded Load  --> DomContentLoad一定快于Load
+
+    hashchange -->Hash值改变的时候执行
+
+31.
+    touchstart(event)  touchmove touchend
+        event.touches  //当前触摸点
+        event.changedTouches //移动的触摸点的信息
+        event.targetTouches  //事件对象上面的触摸点的信息
+
+    
+
+
