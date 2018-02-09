@@ -1,3 +1,62 @@
 1.正则表达式
     字面量方式 /a/
     构造函数方式  new RegExp()
+
+2.匹配普通字符，直接写此字符就可以了 /str/
+
+3.特殊字符要匹配，需要添加转义字符
+
+4.[]表示一个字符类（字符集合），这里面只能选择一个进行匹配
+    [^] 字符取反
+    只要匹配成功一个就会返回true
+    /[js]/.test('javascript') //true
+    /[js]/.test('javascript 11222')//true
+    /[js]/.test('avascript') //true
+    /[js]/.test('avacript') //false
+    /[^js]/.test('avacript   yhg') //true
+    /[^js]/.test('jsssss') //false
+
+
+    别名：
+    .除了\n之外，都能匹配到－－》/[^\n]/
+    \w ---> /[a-zA-Z0-9_]/
+    \W －－－》/[^a-zA-Z0-9_]/
+    \d ---> /[0-9]/
+    \D ---> /[^0-9]/
+    \s ---> 空格和制表符
+    \S －－－》除了空格和制表符等之外的
+
+    量词：{}
+    {2} {2,5} {3,}
+    简写形式：
+    ?   0次或者1次
+    +   大于等于1
+    *   可以是0次
+
+    默认是贪婪匹配
+    /\d+?/  后面添加一个问号，改变贪婪匹配
+
+5.选择
+    ｜只要匹配上就会将后面的条件忽略掉
+    var str = 'css html'
+    var pattern = /css|js|html/
+    pattern.exec(str)//css
+
+    /a|ab/.exec('ab')//a
+
+
+6.分组
+    /ab+/.exec('abab') //ab
+    /(ab)+/.exec('abab')//abab
+    /(ab)c/.exec('abcd')//['abc','ab'] //捕获ab
+    /(?:ab)c/.exec('abcd')//['abc']//非捕获性分组
+
+    /(ab) cd ab/.exec('ab cd ab')
+    /(ab) cd \1/.exec('ab cd ab')// \1代表第一个分组，以此类推
+    “<p><a>这是一段文字</a></p>”
+    匹配p标签里面的内容
+    var regexp = /<([a-zA-Z]+)>(.*?)<\/\1>/使用分组 ？禁止贪婪匹配
+
+7.指定匹配位置
+    ^以...开头   和[^]   作区分
+    $末尾匹配
