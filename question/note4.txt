@@ -59,4 +59,22 @@
 
 7.指定匹配位置
     ^以...开头   和[^]   作区分
+
     $末尾匹配
+
+    \b 表示单词的边界
+        <p class="odd odd2"></p>
+        查找class名包含odd的元素
+        new RegExp("(^|\\s+)" + className + "($|\\s+)")或者
+        new RegExp("\\b" + className + "\\b"),确保odd前后都是单词的边界即可
+
+        //前瞻性匹配
+        var str = "javascript"
+        pattern = /java(?=script)/   //java
+
+        //负向前瞻性
+        var str = "javas"
+        pattern = /java(?!script)/   //java
+
+        exec执行原理：lastIndex 循环执行
+        
