@@ -4,7 +4,7 @@
 
 2.匹配普通字符，直接写此字符就可以了 /str/
 
-3.特殊字符要匹配，需要添加转义字符
+3.特殊字符要匹配，需要添加转义字符 \\n
 
 4.[]表示一个字符类（字符集合），这里面只能选择一个进行匹配
     [^] 字符取反
@@ -76,5 +76,70 @@
         var str = "javas"
         pattern = /java(?!script)/   //java
 
-        exec执行原理：lastIndex 循环执行
+        实例方法：exec(test)执行原理：lastIndex 循环执行   (全局匹配)
+
+8.RegExp实例属性
+    ignoreCase
+    global
+    multiline
+    source
+    lastIndex
+
+    构造函数属性:分组 RegExp.$1
+
+9.字符串中运用正则表达式
+    var str = 'html.js'
+    var pattern = /js/
+    str.search(pattern) //5 返回位置
+
+    var str = 'js js js'
+    var pattern = /(j)s/g
+    str.match(pattern)// 如果是全局匹配，那么不会返回分组中的内容
+
+    split
+    var str = 'css ,    html , js'
+    var pattern = /\s*,\s*/
+    str.split(pattern)
+
+    replace
+    var str = 'i love js'
+    var pattern = /(js)/
+    str.replace(pattern,'<strong>$1</strong>')
+
+    var str = '中国军队和阿扁一起办证';
+    var pattern = /国军|阿扁|办证/g;
+    console.log(str.replace(pattern,function($0){
+        var result = '';
+        for(var i = 0;i < $0.length;i++){
+            result += "*"
+        }
+        return result;
+    }))
+
+    //转驼峰
+    function toCamelCase(str){
+        var pattern = /-([a-z])/gi;//必须使用()进行分组，才能匹配到-后面的字母
+        return str.replace(pattern,function(all,letter){
+            return letter.toUpperCase()
+        })
+    }
+
+    //匹配HTML标签
+    var str = "<span class='name' id='username' style='color:red;'>我是标题</span>";
+    var pattern = /<\/?[a-zA-Z]+(\s+[a-zA-Z]+='.*')*>/g;
+    console.log(str.match(pattern));
+
+
+    //邮箱
+    var pattern = /^(?:\w+\.)*\w+@(?:\w+\.)*[a-z]{2,4}$/i
+    var str = 'abc.cd.ww@www.com.cn'
+    console.log(pattern.test(str))
+
+    //URL地址
+    var pattern = /^(https?:\/\/)?([^:\/]+)(:\d)?(\/.*)?$/
+    var url = 'www.baidu.com'
+    pattern.test(url)
+
+
+
         
