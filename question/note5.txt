@@ -1,0 +1,24 @@
+/**
+
+        js基础知识查漏补缺
+**/
+
+1.typeof返回的类型(基本数据类型)
+    undefined string number boolean object function
+
+2.强制类型转换
+    字符串拼接
+    ==
+    if语句
+    逻辑运算 10 && 0 //0 
+===和==使用场景：
+    obj.a == null 相当于     obj.a == null || obj.a === undefined  jquery源码
+    其他情况都使用===
+
+3.内置函数：Object Array Boolean Number String Function Date RegExp Error
+
+4.js按照存储方式区分：值类型和引用类型
+    值类型赋值是得到副本
+    引用类型是引用的指针
+
+5.JSON是一个js内置对象，同时又是一种数据格式
