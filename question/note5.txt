@@ -22,3 +22,137 @@
     引用类型是引用的指针
 
 5.JSON是一个js内置对象，同时又是一种数据格式
+
+6.原型规则：(理解原型链)
+    所有的引用类型(数组、对象、函数),都有一个__proto__(隐式属性)属性,属性值是一个普通的对象
+    所有的函数，都有一个prototype(显示属性)属性,属性值是一个普通的对象
+    所有的引用类型(数组、对象、函数),__proto__属性值指向它的构造函数的prototype属性值
+    当试图得到一个对象的某个属性时，如果这个对象本身没有这个属性，那么会去它的__proto__属性(它的构造函数的prototype)中去查找
+
+7.new一个对象的过程：
+    创建一个空的对象
+    this指向这个空对象
+    执行代码，对this赋值
+    将这个this返回
+
+8.原型链：
+    function Elem(id){
+        this.name = document.getElementById(id);
+    }
+
+    Elem.prototype.html = function(val){
+        var elem = this.name;
+        if(val){
+            elem.innerHTML = val
+            return this
+        }else{
+            return elem.innerHTML
+        }
+    }
+
+    Elem.prototype.on = function(type,fn){
+        var elem = this.name;
+        elem.addEventListener(type,fn)
+        return this
+    }
+
+    var div = new Elem('page-wrapper');
+    div.html('this is prototype eg').on('click',function(){
+        console.log('zzy')
+    })
+
+9.this使用场景
+    作为构造函数执行
+    作为对象属性执行
+    作为普通函数执行
+    call apply bind(函数表达式)
+
+10.js中没有块级作用域(es6之前),只有全局作用域和函数作用域(局部作用域)
+    函数的父级作用域是定义函数的作用域
+
+    闭包的应用场景：
+        (1).函数作为返回值
+            function fn(){
+                var a = 100
+                return function(){
+                    console.log(a)
+                }
+
+            }
+
+            var fn1 = fn()
+            var a = 200
+            fn1()//100,去定义函数的作用域中找，不是执行的作用域中找
+
+        (2).函数作为参数来传递
+            function fn(){
+                var a = 100
+                return function(){
+                    console.log(a)
+                }
+
+            }
+
+            var fn1 = fn()
+            function Fn(fn){
+                var a = 200;
+                fn()
+            }
+            Fn(fn1)//100,去定义函数的作用域中找，不是执行的作用域中找
+
+
+
+            闭包在实际项目中的运用：封装变量，防止随意篡改
+
+            function isFirstLoad(){
+                var _list = []
+                return function(id){
+                    if(_list.indexOf(id) == -1){
+                        _list.push(id);
+                        return false
+                    }else{
+                        return true
+                    }
+                }
+            }
+
+11.异步的使用场景：
+    定时任务 setTimeout setInterval
+    ajax
+    图片加载 img.onload = function(){}
+    事件绑定
+
+12.单线程
+    console.log(100)
+    setTimeout(function(){
+        console.log(200)
+    })      
+    console.log(300)
+
+    (1).执行第一步，打印100
+    (2).执行setTimeout之后，传入的setTimeout函数会被暂存起来，不会立即执行
+    (3).执行最后一行，打印300
+    (4).待所有程序执行完，处于空闲状态时，会立即看有无暂存起来的需要执行
+    (5).发现暂存起来的setTimetout中的函数无需等待时间，就立即执行此函数
+
+13.同步和异步的区别：同步阻塞代码运行，异步不会
+
+14.实现一个长度一致的随机数
+    function getRan(n){
+        var random = Math.random();
+        random = random + '0'.repeat(n);//生成的长度是多少，后面重复添加多少个零
+        random = random.slice(0,n)
+        return random;
+    }
+
+
+/***
+    JS web Api
+
+***/    
+
+1.DOM(树形结构)可以理解为：浏览器把html代码结构化为浏览器和js可以识别并且可操作的模型
+
+2.DOM的attribute和property区别：
+    property是对js对象的修改，也是js对html固有属性的修改
+    attribute是对html标签属性的修改，包含自定义的标签
