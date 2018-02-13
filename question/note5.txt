@@ -156,3 +156,39 @@
 2.DOM的attribute和property区别：
     property是对js对象的修改，也是js对html固有属性的修改
     attribute是对html标签属性的修改，包含自定义的标签
+
+3.通用事件绑定函数
+    function bindEvent(elem,type,selector,fn){
+        if(fn == null){
+            fn = selector;
+            selector = null;
+        }
+
+        elem.addEventListener(type,function(e){
+            var target;
+            if(selector){
+                //事件代理
+                target = e.target;
+                if(target.matches(selector)){//是否匹配
+                    fn.call(target,e);
+                }
+            }else{
+                fn(e)
+            }
+        })
+    }
+
+    bindEvent(div,'click',a,fn)
+
+    4.ajax  
+        var shr = new XMLHttpRequest()
+        xhr.open('GET','/api',false)
+        xhr.onreadystatechange = function(){
+            if(xhr.readyState == 4){
+                if(xhr.status == 200){
+                    console.log(xhr.responseText)
+                }
+            }
+        }
+
+        xhr.send(null)
