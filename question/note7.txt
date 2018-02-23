@@ -64,11 +64,11 @@
             <div style="flex: 1;background: limegreen;border: 1px solid #ccc;">flex</div>
         </div>
     float布局：
-        float对自身的影响： 
+        float对自身的影响：
             形成"块"(BFC),内联元素可以设置宽度和高度
             位置尽量靠上
             位置尽量靠左(右)
-        float对兄弟的影响：   
+        float对兄弟的影响：
             上面贴非float元素
             旁边贴float元素
             不影响其他块级元素位置
@@ -135,7 +135,7 @@
                     }
                     .middle{
                         margin:0 220px 0 220px;
-                    }  
+                    }
                 (3).flex
                     <div class="container">
                         <p class="left"></p>
@@ -224,7 +224,7 @@
 5.效果属性：
     box-shadow(盒子阴影)    box-shadow:0 0 100px 10px rgba(0,0,0,0.5);
     text-shadow(文字阴影)   text-shadow:2px 2px 2px #f00
-    border-radius 
+    border-radius
         border-radius:50%;
         border-top-left-radius:50%;//每个角分别设置
         border-radius:10px / 20px;//水平方向和垂直方向分别设置
@@ -237,3 +237,54 @@
 
 6.如何产生不占空间的边框：box-shadow
 7.如何实现背景图居中显示/不重复/改变大小 background属性
+8.css动画：
+    类型：
+        transition补间动画（要求元素状态有变化，如：hover等等）
+            transition:width 1s
+            transition-delay:1s//动画延时
+            transition-timing-function//定义动画进度和时间的关系
+        keyframe关键帧动画（直接让元素执行动画）相当于多个补间动画
+            .container{
+                width:100px;
+                height:200px;
+                background:red;
+                animation:run 1s;
+            }
+            @keyframes run{
+                0%{
+                    width:100px
+                }
+                50%{
+                    width:400px;
+                }
+                100%{
+                    width:600px;
+                }
+            }
+        逐帧动画
+            keyframe
+                去掉补间动画 transition-timing-function:steps(1)//指定关键帧之间有几个画面，
+                所以只需要指定一个动画，就相当于没有补间
+9.过渡动画和关键帧动画的区别：
+    过渡动画是需要状态变化的
+    关键帧动画不需要状态变化
+    关键帧动画能控制更精细
+10.如何实现逐帧动画
+    使用关键帧动画
+    去掉补间动画steps(1)
+11.css动画的性能
+    css动画性能不坏
+    部分情况下优于js
+    但是js可以实现更好
+    部分高危属性
+
+12.css预处理器（less速度较快  js编写、sass编译较慢  ruby编写）
+    基于css的另外一种语言
+    通过工具编译成css
+    添加了很多css不具备的属性
+    能够提升css文件的组织
+    可以嵌套 反应层级和约束
+    变量和计算 减少重复代码
+    Extend和Mixin 代码片段
+    循环 适用于复杂有规律的样式
+    import css文件模块化
