@@ -1,0 +1,239 @@
+/****
+    css
+/
+
+1.浏览器解析选择器的方式：从右向左，这样做的目的是提高渲染性能
+2.选择器权重：
+    ID选择器 100
+    类选择器 属性选择器 伪类选择器 10
+    元素选择器 伪元素选择器 1
+    其他选择器 0
+
+    另外的规则：
+        !important优先级最高
+        元素属性（内联样式）优先级高
+        相同权重，后写的生效
+
+3.非布局样式：
+    字体 字体族
+
+    行高：
+        img默认和底部有空隙原因：img是inline元素，它会按照baseline对齐方式进行对齐，
+        而baseline和底部是有一定的空隙的，空隙的大小视字体本身的大小而定，解决的方式：vertical-align:bottom
+        设置垂直的对齐方式是底部对齐就可以了。或者直接将img改称块级元素display:block
+
+    背景：
+        渐变：linear-gradient:(to right,red,green)
+            linear-gradient:(45deg,red,green)
+        雪碧图原理：
+            background-position
+            多分辨率适配：使用不同倍数的背景图进行适配
+        base64:将图片做成了文本,减少了http请求，但是同时增大了文件的体积，所以这个适用于少量的小图片
+
+    边框：实现一个三角形
+
+    文字折行：
+        overflow-wrap(word-wrap)
+        word-break:break-all(打断所有的) keep-all(保留所有的) break-word(打断单词，单词折行)
+        white-space: nowrap;让一个很长的句子不换行
+
+    装饰性属性：
+        font-weight:粗体
+        font-style:itatic斜体
+        text-decoration:下划线
+        指针cursor:pointer
+    css兼容性的解决方案：css hack   浏览器特性检测
+
+    美化checkbox使用css实现
+        使用label(for)，对应input[id]
+        隐藏原生input
+        使用input:checked + label 编写选中的样式
+
+4.布局
+    表格table:
+        <div class="table" style="display: table;height: 200px;">
+	        <div class="table-row" style="display: table-row;">
+    	        <div class="table-cell" style="display: table-cell;width: 200px;background: pink;vertical-align: middle;">左左</div>
+                <div class="table-cell" style="display: table-cell;width: 200px;background: greenyellow;vertical-align: middle;">右右</div>
+            </div>
+        </div>
+    盒子模型：content padding border margin
+    flexbox布局：
+        <div id="target" style="display: flex;width: 300px;height: 50px;border: 1px solid #ccc;">
+	        <div style="flex: none;background: limegreen;border: 1px solid #ccc;width: 200px;">flex</div>
+            <div style="flex: 1;background: limegreen;border: 1px solid #ccc;">flex</div>
+        </div>
+    float布局：
+        float对自身的影响： 
+            形成"块"(BFC),内联元素可以设置宽度和高度
+            位置尽量靠上
+            位置尽量靠左(右)
+        float对兄弟的影响：   
+            上面贴非float元素
+            旁边贴float元素
+            不影响其他块级元素位置
+            影响其他块级元素文本
+        float对父级的影响：
+            从布局上"消失"
+            高度塌陷
+                清除浮动的方式：
+                    (1).container::after{content:' ';clear:both;display:block;height:0;visibility:hidden;}
+                    (2).父级overflow:hidden;
+                    (3).父级overflow:auto;
+            实现三栏布局
+                (1).float
+                    <div id='container'>
+                        <div class="left">左边</div>
+                        <div class="right">右边</div>
+                        <div class="middle">中间</div>
+                    </div>
+                    #container{
+                        width:100%;
+                        height:200px;
+                    }
+                    .left{
+                        float:left;
+                        width:200px;
+                        height:200px;
+                        background:blue;
+                    }
+                    .right{
+                        float:right;
+                        width:200px;
+                        height:200px;
+                        background:yellow;
+                    }
+                    .middle{
+                        margin:0 200px;
+                    }
+                (2).position
+                    <div id='container'>
+                        <div class="left">左边</div>
+                        <div class="right">右边</div>
+                        <div class="middle">中间</div>
+                    </div>
+                    *{
+                        margin:0;
+                        padding:0;
+                    }
+                    #container{
+                        width:100%;
+                        height:200px;
+                    }
+                    .left{
+                        position:absolute;
+                        width:200px;
+                        height:200px;
+                        background:blue;
+                    }
+                    .right{
+                        position:absolute;
+                        right:0;
+                        width:200px;
+                        height:200px;
+                        background:yellow;
+                    }
+                    .middle{
+                        margin:0 220px 0 220px;
+                    }  
+                (3).flex
+                    <div class="container">
+                        <p class="left"></p>
+                        <p class="middle">我们的中国</p>
+                        <p class="right"></p>
+                    </div>
+                    .container {
+                        display: flex;
+                    }
+                    .middle {
+                        height: 200px;
+                        background-color: red;
+                        flex: 1;
+                    }
+
+                    .left {
+                        height: 200px;
+                        background-color: yellow;
+                        flex: 0 0 200px;
+                        width:200px;
+                        margin-right:20px;
+                    }
+
+                    .right {
+                        height: 200px;
+                        background-color: green;
+                        flex: 0 0 200px;
+                        width:200px;
+                        margin-left:20px;
+                    }
+    inline-block布局：
+        需要处理间隙:需要在父级设置font-size:0;
+            <div class="container">
+                <p class="left">左边</p>
+                <p class="right">右边</p>
+            </div>
+            .container {
+                width:400px;
+                font-size:0;
+            }
+
+            .left {
+                width:200px;
+                display:inline-block;
+                background:red;
+                height:200px;
+                font-size:14px;
+            }
+
+            .right {
+                width:200px;
+                display:inline-block;
+                background:blue;
+                height:200px;
+                font-size:14px;
+            }
+
+    响应式设计和布局：
+        rem viewport media query
+        <meta name="viewport" content="width=320">修改width的值，做到等比缩放
+        rem相对于html，进行计算：(精确性不高)
+            html{
+                font-size:10px;
+            }
+            .container {
+                width:400px;
+                font-size:0;
+            }
+
+            .left {
+                width:200px;
+                display:inline-block;
+                background:red;
+                height:200px;
+                font-size:1.4rem;
+            }
+
+            .right {
+                width:200px;
+                display:inline-block;
+                background:blue;
+                height:200px;
+                font-size:1.4rem;
+            }
+
+5.效果属性：
+    box-shadow(盒子阴影)    box-shadow:0 0 100px 10px rgba(0,0,0,0.5);
+    text-shadow(文字阴影)   text-shadow:2px 2px 2px #f00
+    border-radius 
+        border-radius:50%;
+        border-top-left-radius:50%;//每个角分别设置
+        border-radius:10px / 20px;//水平方向和垂直方向分别设置
+    background
+        background-size:cover/contain;
+        background-position:center center;
+    clip-path 对容器进行裁剪,或者配合svg使用
+        clip-path:circle(50px)
+        clip-path:inset(20px 20px)
+
+6.如何产生不占空间的边框：box-shadow
+7.如何实现背景图居中显示/不重复/改变大小 background属性
