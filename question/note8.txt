@@ -1,0 +1,17 @@
+/***
+    vue react框架中的css
+**/
+1.vue vue-cli
+避免css发生冲突
+<style scoped></style>  随机属性
+<style module></style> css modules
+2.react create-react-app
+    css modules
+    styled-components
+
+面试关注重点：
+    css基础知识
+    移动端应用经验
+    动画能力
+    项目经历
+    工程化能力
