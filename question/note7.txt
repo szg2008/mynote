@@ -283,8 +283,99 @@
     通过工具编译成css
     添加了很多css不具备的属性
     能够提升css文件的组织
+
     可以嵌套 反应层级和约束
     变量和计算 减少重复代码
     Extend和Mixin 代码片段
     循环 适用于复杂有规律的样式
     import css文件模块化
+
+    less:
+        变量：@width
+        mixin:
+            .block(@fontsize){
+                font-size:@fontsize;
+                border:1px solid #ccc;
+            }
+            .nav{
+                .block(14px)
+            }
+        extend:
+            .block{
+                font-size:@fontsize;
+                border:1px solid #ccc;
+            }
+            .nav:extend(.block){
+                color:red;
+            }
+        loop:
+            .gen-col(@n) when (@n > 0){
+                .gen-col(@n - 1);
+                .col-@{n}{
+                    width:(1200 / 12 * @n)px
+                }
+            }
+            .gen-col(12);
+        import:
+            @import "./style/variable"
+            @import "./style/module"
+    scss:
+        变量：$width
+        mixin:
+            @mixin block($fontsize){
+                font-size:$fontsize;
+                border:1px solid #ccc;
+            }
+            .nav{
+                @include block(14px)
+            }
+        extend:
+            .block{
+                font-size:@fontsize;
+                border:1px solid #ccc;
+            }
+            .nav{
+                @extend .block;
+            }
+        loop:
+            @for $i from 1 through 10{
+                .col-#{$i}{
+                    width:1200px/12*$i;
+                }
+            }
+        import:
+            @import "./style/variable"
+            @import "./style/module"
+
+13.css预处理器框架：
+    scss Compass
+    less Lesshat/EST
+    提供现成的mixin
+    封装常用的功能
+
+14.预处理器的作用：
+    更好的组织css代码
+    提高代码复用率
+    增加可维护性
+
+15.css工程化
+    PostCSS
+        模块化
+        加前缀
+        处理兼容性
+        插件：import模块合并 autoprefixier加前缀 cssnano压缩 cssnext使用新特性 
+    webpack
+16.如何解决css模块化
+    使用Less Scss等预处理器
+    使用Postcss插件
+    使用webpack
+17.Postcss能做什么
+    取决于插件能做什么
+    autoprefixier cssnext precss等 兼容性处理
+    import模块合并
+    css语法检查
+    压缩文件
+18.为什么用js来加载、引用css
+    js作为入口，管理资源有天然优势
+    将组件的结构、样式、行为封装到一起，增强内聚
+    可以做更多的处理(webpack)
