@@ -202,7 +202,9 @@
 1.git 常用命令：
     git checkout  撤销修改的内容
     git checkout -b 创建新的分支－－－ 多人协作
-    git branch   查看分支
+    git branch -d branchname  删除本地分支
+    git push origin --delete branchname  删除远程分支
+    git branch -a   查看分支
     git merge  合并
     git diff  对比修改的文件的不同
 
@@ -269,4 +271,3 @@
 8.简历：
     重点突出项目经历和解决方案
     个人博客或者开源项目
-    

@@ -35,7 +35,7 @@
     文字折行：
         overflow-wrap(word-wrap)
         word-break:break-all(打断所有的) keep-all(保留所有的) break-word(打断单词，单词折行)
-        white-space: nowrap;让一个很长的句子不换行
+        white-space: nowrap;让一个很长的句子不换行normal
 
     装饰性属性：
         font-weight:粗体
@@ -363,7 +363,7 @@
         模块化
         加前缀
         处理兼容性
-        插件：import模块合并 autoprefixier加前缀 cssnano压缩 cssnext使用新特性 
+        插件：import模块合并 autoprefixier加前缀 cssnano压缩 cssnext使用新特性
     webpack
 16.如何解决css模块化
     使用Less Scss等预处理器
