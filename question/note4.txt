@@ -136,7 +136,7 @@
     console.log(pattern.test(str))
 
     //URL地址
-    var pattern = /^(https?:\/\/)?([^:\/]+)(:\d)?(\/.*)?$/
+    var pattern = /^(https?:\/\/)?([^:\/]+)(:\d)?(.*)+$/
     var url = 'www.baidu.com'
     pattern.test(url)
 

@@ -14,15 +14,61 @@ https://hyc.gitbooks.io/interviewlibrary/content/
     http和https使用的是完全不同的连接方式用的端口也不一样,前者是80,后者是443
     http的连接很简单,是无状态的
     HTTPS协议是由SSL+HTTP协议构建的可进行加密传输、身份认证的网络协议,
-    要比http协议安全HTTPS
+    要比http协议安全
 
 3.post请求缓存数据
-
-4.md5算法的实现
 
 5.ios下去除input默认样式的方法：-webkit-appearance: none;
 
 6.bind原理
+    和call、apply区别
+    call、apply是立即执行的
+    bind不是立即执行，什么时候调用什么时候执行
+    Function.prototype.bind = function() {
+        var self = this; // 保存原函数
+        var context = [].shift.call(arguments);//执行上下文对象
+        var args = [].slice.call(arguments);//将剩下的参数转化成数组
+        return function() { // 返回一个新函数
+            return self.apply(context, [].concat.call(args,[].slice.call(arguments))); // 执行新函数时，将传入的上下文context作为新函数的this
+        }
+    }
+    Function.prototype.bind2 = function (oThis) {
+        var aArgs = Array.prototype.slice.call(arguments, 1), 
+        fToBind = this, 
+        fNOP = function () {},
+        fBound = function () {
+            return fToBind.apply(oThis || window,aArgs.concat(Array.prototype.slice.call(arguments)));};
+        fNOP.prototype = this.prototype;
+        fBound.prototype = new fNOP();
+        return fBound;
+    };
+    应用场景：
+        1.实现对象继承
+            function A(name){
+                this.name = name;
+            }
+
+            function B(){
+                A.bind(this,arguments);
+            }
+            B.prototype.getName = function(){
+                return this.name
+            }
+
+            var b = new B('lily')
+            console.log(b.getName())
+
+        2.实现事件绑定
+            var paint = {
+                count:0,
+                updateCount:function(){
+                    this.count++;
+                    return this.count;
+                }
+            }
+
+            btn.addEventListener('click',paint.updateCount)//这是错误的，因为这时候的this指向的是window
+            btn.addEventListener('click',paint.updateCount.bind(paint))
 
 7.function和箭头函数的区别：
     this的指向：箭头函数this指的是该函数在定义时候的对象，而function中的this指的是执行时候的对象
