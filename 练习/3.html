@@ -1,0 +1,49 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>右边宽度固定，左边自适应</title>
+        <style media="screen">
+            /*1.需要将结构相反，先写right，后写left*/
+            /* .container{
+                height:200px;
+            }
+            .left,.right{
+                height: 100%;
+            }
+            .right{
+                float:right;
+                width:200px;
+                background: pink;
+            }
+            .left{
+                background: green;
+                margin-right:200px;
+            } */
+            .container{
+                display:flex;
+                height: 200px;
+            }
+            .left,.right{height: 100%;}
+            .right{
+                flex:0 0 200px;
+                width:200px;
+                background: pink;
+            }
+            .left{
+                flex:1;
+                background: green;
+            }
+        </style>
+    </head>
+    <body>
+        <div class="container">
+            <div class="left">
+
+            </div>
+            <div class="right">
+
+            </div>
+        </div>
+    </body>
+</html>

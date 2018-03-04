@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>判断两个对象是否相等</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            var obj1 = {
+                a:1,
+                b:2
+            }
+            var obj2 = {
+                a:1,
+                b:2
+            }
+            var str = JSON.stringify(obj1)
+            obj3 = JSON.parse(str)
+            //实现深拷贝，先转化成字符串，然后再进行解析
+            obj4 = obj1;
+
+            console.log(JSON.stringify(obj1) === JSON.stringify(obj2))//true
+            console.log(JSON.stringify(obj1) === JSON.stringify(obj3))//true
+
+            obj1.a = 3;
+            console.log(obj3.a,obj4.a)//1,3
+        </script>
+    </body>
+</html>

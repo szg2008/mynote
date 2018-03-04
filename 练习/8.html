@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>vue实现的双向数据绑定</title>
+    </head>
+    <body>
+        <div class="">
+            <input type="text" name="" value="" id="txt" />
+            <span id="show-txt"></span>
+        </div>
+        <script type="text/javascript">
+            //通过Object.defineProperty实现，主要是修改的set方法
+            var obj = {}
+            Object.defineProperty(obj,'txt',{
+                get:function(){
+                    return obj
+                },
+                set:function(newValue){
+                    document.getElementById('txt').value = newValue;
+                    document.getElementById('show-txt').innerHTML = newValue;
+                }
+            })
+
+            document.addEventListener('keyup',function(e){
+                obj.txt = e.target.value;
+            })
+        </script>
+    </body>
+</html>
