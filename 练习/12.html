@@ -1,0 +1,29 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>继承－－>寄生组合继承（es5最优继承方式）</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            function Person(name){
+                this.name = name;
+            }
+            Person.prototype.getName = function(){
+                return this.name
+            }
+
+            function Man(name){
+                Person.call(this,name)
+            }
+
+            Man.prototype = Object.create(Person.prototype)//只是将父类的原型复制了一份给子类
+            Man.prototype.constructor = Man;
+
+            var man1 = new Man('zhanlang')
+            var man2 = new Man('fanghua')
+            console.log(man1.name,man2.name)
+            console.log(man1.getName())
+        </script>
+    </body>
+</html>

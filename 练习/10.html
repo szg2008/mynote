@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>继承－－>构造函数继承</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            function Person(name){
+                this.name = name;
+            }
+            Person.prototype.getName = function(){
+                return this.name
+            }
+
+            function Man(name){
+                Person.apply(this,arguments)
+            }
+
+            var man1 = new Man('fanghua')
+            var man2 = new Man('zhanlang')
+            console.log(man1.name)
+            console.log(man2.name)
+            // console.log(man1.getName())//报错
+            //相比原型赋值方式，每个子类都有了自己的私有属性，但是子类只能继承父类构造函数中定义的属性和方法，原型上面的方法不能继承
+        </script>
+    </body>
+</html>

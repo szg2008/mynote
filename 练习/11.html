@@ -1,0 +1,30 @@
+<!DOCTYPE html>
+<html>
+    <head>
+        <meta charset="utf-8">
+        <title>继承－－>组合继承</title>
+    </head>
+    <body>
+        <script type="text/javascript">
+            function Person(name){
+                this.name = name;
+            }
+            Person.prototype.getName = function(){
+                return this.name
+            }
+
+            function Man(name){
+                Person.call(this,name)
+            }
+
+            Man.prototype = new Person('lily')
+
+            var man1 = new Man('zhanlang')
+            var man2 = new Man('fanghua')
+            console.log(man1.name,man2.name)
+            console.log(man1.getName())
+            //实现了子类即有自己的私有属性，又继承了父类的原型上的属性和方法。
+            //缺点：Man.prototype = new Person('lily')，执行之后，Man原型上增加了一个name属性，而再man实例化的时候，有了一个name属性，直接覆盖掉了原型上面的name
+        </script>
+    </body>
+</html>
